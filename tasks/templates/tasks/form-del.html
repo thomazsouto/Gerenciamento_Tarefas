@@ -1,0 +1,27 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block content %}
+
+<h3>Excluir</h3>
+
+<p class="lead">
+    Confirme para excluir.
+</p>
+<hr>
+
+<form action="" method="POST">
+
+    <p>
+        Deseja excluir o regristro de Titulo: <strong>{{ object }}</strong> ?
+    </p>
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-denger">Excluir</button>
+</form>
+
+
+
+{% endblock%}

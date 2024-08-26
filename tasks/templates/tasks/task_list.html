@@ -1,0 +1,15 @@
+{% extends "tasks/index.html" %}
+{% load static %}
+
+{% block content %}
+
+<h4><small>Tarefas</small></h4>
+
+<div class="col-sm-9">
+{% for Task in object_list %}      
+      <hr>
+      <h2> Titulo: {{ Task.title }}</h2>
+      <h5> Descrição::  {{ Task.description }}</h5>  
+      <br><br> 
+{% endfor %}
+{% endblock %}  

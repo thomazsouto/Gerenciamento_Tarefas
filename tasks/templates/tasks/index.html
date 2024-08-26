@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Gerenciamento de tarefas </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    label{
+      width: 100px;
+    }
+    .auth-card {
+      margin-bottom: 30px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<body>
+
+ 
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Gerenciamento de Tarefas</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="/">Home</a></li>
+
+        <!---- {% if user.is_authenticated %} -->
+        <li><a href="/tasks/taskCreate">Inclusão de Tarefas</a></li>
+        <li><a href="tasks/tasksList">Tarefas</a></li>
+		<li><a href="/tasks/editartarefas">Editar Tarefas</a></li>
+		<li><a href="/tasks/excluirtarefas">Excluir Tarefas</a></li>
+        
+        <!----{% else %}-->
+        <li><a href="/accounts/login">Login</a></li>
+       <!---- {% endif %}-->
+       <!---- {% if user.is_authenticated %} -->
+        <li><a href="/accounts/logout">Sair</a></li>
+       <!-- {% endif %}-->
+      </ul><br>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Consulta">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+    <div class="col-sm-9">
+    {% block content%} 
+    
+      <h4><small></small></h4>
+      <hr>
+      <h2>Aplicação Web para Gerenciamento de
+		Tarefas</h2>
+      <h5> Desenvolvido por Thomaz Souto</h5>
+      <br>
+      <p><h4>Desenvolvi uma aplicação web usando Django que permite aos usuários gerenciar suas tarefas diárias de forma eficiente.
+		A aplicação oferece uma interface intuitiva e fácil de usar para realizar as seguintes ações:</h4></p>
+      <br> 
+	  <h2>Funcionalidades:</h2>
+	  <ul>
+		  <li><strong>Criação de Tarefas:</strong> Adicione novas tarefas com detalhes específicos, como título, descrição e prazo.</li>
+		  <li><strong>Visualização de Tarefas:</strong> Consulte uma lista de tarefas criadas, com a capacidade de filtrar e organizar
+			 por data de vencimento ou prioridade.</li>
+		  <li><strong>Edição de Tarefas:</strong> Modifique informações de tarefas existentes para refletir alterações em prazos ou detalhes.</li>
+		  <li><strong>Exclusão de Tarefas:</strong> Remova tarefas concluídas ou desnecessárias para manter sua lista de tarefas organizada e atualizada.</li>
+	  </ul>
+
+	  <p>A aplicação é projetada para ajudar os usuários a manterem o controle de suas atividades diárias,
+		 aumentando a produtividade e eficiência. A interface foi desenvolvida para ser simples,
+		  garantindo uma experiência de usuário fluida e acessível.</p>
+    {% endblock %}    
+    </div>
+
+</body>
+</html>
