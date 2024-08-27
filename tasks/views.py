@@ -4,12 +4,22 @@ from .models import Task
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'base.html')
 
 #Listar tarefas
 class tasksList(ListView):
     model = Task
-    tamplate_name = 'task_list.html'
+    template_name = 'tasks/tasksList.html'
+
+#Tarefas pendentes
+def tasksPend(request):
+    tasks = Task.objects.filter(completed=False)
+    return render(request, 'tasks/tasksPend.html', {'tasks': tasks})
+#Tarefas completadas
+def tasksComp(request):
+    tasks = Task.objects.filter(completed=True)
+    return render(request, 'tasks/tasksComp.html', {'tasks': tasks})
+
 
 #criar tarefas
 class taskCreate(CreateView):

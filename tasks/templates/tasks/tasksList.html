@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h4>Tarefas</h4>
+
+<div><a href="{% url 'tasks:pendentes' %}" class="btn btn-primary">Tarefas Pendentes</a>   <a href="{% url 'tasks:completadas' %}" class="btn btn-primary">Tarefas Completadas</a></div>
+<div class="col-sm-9">
+{% for Task in object_list %}      
+      <hr>
+      <h2> Titulo: {{ Task.title }}</h2>
+      
+      <!--Criei uma caixa para a visualização da descrição seja mais facil-->
+      <div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: #f9f9f9;">
+            <h4>Descrição da tarefa:</h4>
+            <p>{{ Task.description }}</p>            
+        </div><br>
+        <h5>Prazo para cumprir a tarefa: {{ Task.due_date }}</h5>      
+        <label for="is_active" style="margin-right: -10px;">Finalizado:</label>
+      <input type="checkbox" id="is_active" name="is_active" disabled {% if Task.completed %}checked{% endif %}>
+      
+      <!--Mostrando o nome completo, caso não tenha mostrar o user-->
+      <h5>Responsável pela tarefa: 
+            <b>
+                {% if Task.user.get_full_name %}
+                    {{ Task.user.get_full_name }}
+                {% else %}
+                    {{ Task.user.username }}
+                {% endif %}
+            </b>
+        </h5>
+        <span style="display: block; text-align: right; font-size: smaller;">Data da criação da tarefa: {{ Task.created_at }}</span>
+      
+{% endfor %}
+{% endblock %}  

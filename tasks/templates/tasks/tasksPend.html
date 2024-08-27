@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h4><small>Tarefas Pendentes</small></h4>
+
+<div class="col-sm-9">
+    {% for task in tasks %}
+        <hr>
+        <h2>Título: {{ task.title }}</h2>
+
+        <!-- Caixa para a visualização da descrição -->
+        <div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: #f9f9f9;">
+            <h4>Descrição da tarefa:</h4>
+            <p>{{ task.description }}</p>
+        </div><br>
+
+        <h5>Prazo para cumprir a tarefa: {{ task.due_date }}</h5>
+        
+        <label for="is_active" style="margin-right: -10px;">Finalizado:</label>
+        <input type="checkbox" id="is_active" name="is_active" disabled {% if task.completed %}checked{% endif %}>
+
+        <!-- Mostrando o nome completo do usuário, ou o username caso não tenha nome completo -->
+        <h5>Responsável pela tarefa: 
+            <b>
+                {% if task.user.get_full_name %}
+                    {{ task.user.get_full_name }}
+                {% else %}
+                    {{ task.user.username }}
+                {% endif %}
+            </b>
+        </h5>
+
+        <span style="display: block; text-align: right; font-size: smaller;">Data da criação da tarefa: {{ task.created_at }}</span>
+    {% empty %}
+        <p>Nenhuma tarefa pendente encontrada.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
