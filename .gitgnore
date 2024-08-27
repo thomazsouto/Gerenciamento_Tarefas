@@ -1,0 +1,25 @@
+
+# Arquivos do ambiente virtual
+venv/
+.venv/
+env/
+.env/
+
+# Arquivos de configuração do Django
+*.pyc
+__pycache__/
+
+# Arquivos de configuração do IDE
+.vscode/
+.idea/
+
+# Arquivos de log
+*.log
+
+# Arquivos de build
+build/
+dist/
+*.egg-info/
+
+# Arquivos de testes temporários
+*.tmp
