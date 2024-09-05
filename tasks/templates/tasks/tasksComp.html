@@ -4,36 +4,42 @@
 {% block content %}
 <h4><small>Tarefas Completadas</small></h4>
 
-<div class="col-sm-9">
+<div class="row">
     {% for task in tasks %}
-        <hr>
-        <h2>Título: {{ task.title }}</h2>
-
-        <!-- Caixa para a visualização da descrição -->
-        <div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: #f9f9f9;">
-            <h4>Descrição da tarefa:</h4>
-            <p>{{ task.description }}</p>
-        </div><br>
-
-        <h5>Prazo para cumprir a tarefa: {{ task.due_date }}</h5>
-        
-        <label for="is_active" style="margin-right: -10px;">Finalizado:</label>
-        <input type="checkbox" id="is_active" name="is_active" disabled {% if task.completed %}checked{% endif %}>
-
-        <!-- Mostrando o nome completo do usuário, ou o username caso não tenha nome completo -->
-        <h5>Responsável pela tarefa: 
-            <b>
-                {% if task.user.get_full_name %}
-                    {{ task.user.get_full_name }}
-                {% else %}
-                    {{ task.user.username }}
-                {% endif %}
-            </b>
-        </h5>
-
-        <span style="display: block; text-align: right; font-size: smaller;">Data da criação da tarefa: {{ task.created_at }}</span>
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ task.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Prazo: {{ task.due_date }}</h6>
+                <p class="card-text">
+                    <strong>Descrição:</strong> {{ task.description }}
+                </p>
+                <div class="d-flex align-items-center mb-2">
+                    <div class="form-check me-3">
+                        <input type="checkbox" class="form-check-input" id="is_active_{{ task.pk }}" name="is_active" disabled {% if task.completed %}checked{% endif %}>
+                        <label class="form-check-label" for="is_active_{{ task.pk }}">Finalizado</label>
+                    </div>
+                    <div class="ms-auto">
+                        <p class="mb-0">
+                            <strong>Responsável:</strong> 
+                            {% if task.user.get_full_name %}
+                                {{ task.user.get_full_name }}
+                            {% else %}
+                                {{ task.user.username }}
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <p class="text-muted mb-0">Data de Criação: {{ task.created_at }}</p>
+            </div>
+        </div>
+    </div>
     {% empty %}
-        <p>Nenhuma tarefa pendente encontrada.</p>
+    <div class="col-md-12">
+        <div class="alert alert-info" role="alert">
+            Nenhuma tarefa completada encontrada.
+        </div>
+    </div>
     {% endfor %}
 </div>
 
