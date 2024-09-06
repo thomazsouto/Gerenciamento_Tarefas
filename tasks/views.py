@@ -10,8 +10,8 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return render(request, 'base.html')
 
-#Listar tarefas
-class tasksList(LoginRequiredMixin ,ListView):
+#Visualizar tarefa
+class tasksList(LoginRequiredMixin, ListView):
     model = Task
     template_name = 'tasks/tasksList.html'
     context_object_name = 'tasks'
@@ -23,12 +23,16 @@ class tasksList(LoginRequiredMixin ,ListView):
 #Tarefas pendentes
 @login_required
 def tasksPend(request):
-    tasks = Task.objects.filter(completed=False)
+    user = request.user
+    tasks = Task.objects.filter(completed=False, user=user)
     return render(request, 'tasks/tasksPend.html', {'tasks': tasks})
-#Tarefas completadas
+
+
+#Tarefas concluidas
 @login_required
 def tasksComp(request):
-    tasks = Task.objects.filter(completed=True)
+    user = request.user
+    tasks = Task.objects.filter(completed=True, user=user)
     return render(request, 'tasks/tasksComp.html', {'tasks': tasks})
 
 
