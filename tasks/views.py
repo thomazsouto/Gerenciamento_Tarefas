@@ -35,7 +35,7 @@ def tasksComp(request):
 #Criar tarefa
 class tasksCreate(LoginRequiredMixin, CreateView):
     model = Task    
-    fields = ['title', 'description', 'user','due_date']
+    fields = ['title', 'description', 'user','due_date','completed']
     template_name = 'tasks/taskInsert.html'
     success_url = '/'
 
@@ -48,7 +48,7 @@ class tasksCreate(LoginRequiredMixin, CreateView):
 
 class tasksUpdate(LoginRequiredMixin, UpdateView):
     model = Task    
-    fields = ['title', 'description', 'user','due_date']
+    fields = ['title', 'description', 'user','due_date','completed']
     template_name = 'tasks/tasksUpdate.html'
     success_url = '/'
 

@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ task.title }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Prazo: {{ task.due_date }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Prazo: {{ task.due_date|date:"d/m/Y H:i" }}</h6>
                 <p class="card-text">
                     <strong>Descrição:</strong> {{ task.description }}
                 </p>
@@ -30,7 +30,7 @@
                         </p>
                     </div>
                 </div>
-                <p class="text-muted mb-0">Data de Criação: {{ task.created_at }}</p>
+                <p class="text-muted mb-0">Data de Criação: {{ task.created_at|date:"d/m/Y H:i" }}</p>
             </div>
         </div>
     </div>
