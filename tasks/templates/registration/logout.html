@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h2 class="my-4">Deseja realmente sair?</h2>
+    <form method="post" action="{% url 'tasks:logout' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Sim, fazer logout</button>
+      <a href="{% url 'tasks:index' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
+{% endblock %}

@@ -16,6 +16,5 @@ urlpatterns = [
 
     # URLs de autenticação
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
-   
+    path('accounts/logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html', next_page='tasks:index'), name='logout'),   
 ]
