@@ -31,6 +31,10 @@
                     </div>
                 </div>
                 <p class="text-muted mb-0">Data de Criação: {{ task.created_at|date:"d/m/Y H:i" }}</p>
+                <div class="d-flex justify-content-end mt-3">
+                    <a href="{% url 'tasks:editar' task.pk %}" class="btn btn-primary btn-sm me-2">Editar</a>
+                    <a href="{% url 'tasks:excluir' task.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                </div>
             </div>
         </div>
     </div>

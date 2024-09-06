@@ -41,7 +41,7 @@ class tasksCreate(LoginRequiredMixin, CreateView):
     model = Task    
     fields = ['title', 'description', 'user','due_date','completed']
     template_name = 'tasks/taskInsert.html'
-    success_url = '/'
+    success_url = '/tasks/tasksList'
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -54,10 +54,10 @@ class tasksUpdate(LoginRequiredMixin, UpdateView):
     model = Task    
     fields = ['title', 'description', 'user','due_date','completed']
     template_name = 'tasks/tasksUpdate.html'
-    success_url = '/'
+    success_url = '/tasks/tasksList'
 
 class tasksDelete(LoginRequiredMixin, DeleteView):
     model = Task    
     fields = ['title', 'description', 'user','due_date']
     template_name = 'tasks/tasksDelete.html'
-    success_url = '/'
+    success_url = '/tasks/tasksList'
